@@ -1,39 +1,35 @@
-import { Stack } from "expo-router";
-import { useState } from "react";
-import {Button, FlatList, StyleSheet, Text, TextInput} from "react-native";
+import { Link, Stack } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Lista() {
-  const [texto, setTexto] = useState("");
-  const [lista, setLista] = useState([]);
-
-  function adicionar() {
-    setLista([...lista, texto]);
-    setTexto("");
-  }
-
+export default function Inicio() {
   return (
     <SafeAreaView style={styles.tela} edges={["bottom"]}>
-      <Stack.Screen options={{ title: "Lista de músicas" }} />
+      <Stack.Screen options={{ title: "Meus aplicativos" }} />
 
-      <TextInput
-        style={styles.campo}
-        value={texto}
-        onChangeText={setTexto}
-        placeholder="Nova música"
-      />
+      <View style={styles.cabecalho}>
+        <View style={styles.avatar} />
+        <View>
+          <Text style={styles.saudacao}>Olá, Estudante</Text>
+          <Text style={styles.subtitulo}>Bem-vindo de volta</Text>
+        </View>
+      </View>
 
-      <Button title="ADICIONAR"
-      color="purple" 
-      onPress={adicionar} />
+      <View style={styles.cartao}>
+        <Text style={styles.cartaoTitulo}>Contador</Text>
+        <Text style={styles.detalhe}>Aumente ou diminua o número.</Text>
+        <Link href="/contador" style={styles.link}>
+          Abrir contador →
+        </Link>
+      </View>
 
-      <FlatList
-        style={styles.lista}
-        data={lista}
-        renderItem={({ item }) => (
-          <Text style={styles.item}>{item}</Text>
-        )}
-      />
+      <View style={styles.cartao}>
+        <Text style={styles.cartaoTitulo}>Lista de músicas</Text>
+        <Text style={styles.detalhe}>Adicione músicas à sua lista.</Text>
+        <Link href="/listamusicas" style={styles.link}>
+          Abrir lista de músicas →
+        </Link>
+      </View>
     </SafeAreaView>
   );
 }
@@ -41,32 +37,60 @@ export default function Lista() {
 const styles = StyleSheet.create({
   tela: {
     flex: 1,
-    backgroundColor: "white",
-    paddingHorizontal: 16,         //espacamento do campo de digitacao com o cabecalho
-    paddingTop: 20,
+    backgroundColor: "#FFFFFF",
+    paddingHorizontal: 16,
+    paddingTop: 16,
   },
 
-  campo: {
-    borderWidth: 1,
-    borderColor: "grey",
-    borderRadius: 5,
-    padding: 12,
-    fontSize: 16,
-    color: "black",
+  cabecalho: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 14,
+    marginBottom: 20,
+  },
+
+  avatar: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: "#D9DDE3",
+  },
+
+  saudacao: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#111827",
+  },
+
+  subtitulo: {
+    fontSize: 14,
+    color: "#6B7280",
+    marginTop: 2,
+  },
+
+  cartao: {
+    backgroundColor: "#F1F3F6",
+    borderRadius: 12,
+    padding: 16,
     marginBottom: 12,
+    gap: 6,
   },
 
-  lista: {
-    flex: 1,
-    marginTop: 20,      //estilo do espacamento entre o primeiro item adicionado na lista com o botao add 
+  cartaoTitulo: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#111827",
   },
 
-  item: {
-    backgroundColor: "silver",
-    borderRadius: 5,
-    padding: 16,                  //estilos dos itens da lista
-    marginBottom: 10,
+  detalhe: {
+    fontSize: 14,
+    color: "#374151",
+  },
+
+  link: {
     fontSize: 15,
-    color: "black",
+    fontWeight: "600",
+    color: "#2354D6",
+    marginTop: 4,
   },
 });

@@ -18,7 +18,7 @@ export default function Lista() {
 
   return (
     <SafeAreaView style={styles.tela} edges={["bottom"]}>
-      <Stack.Screen options={{ title: "Lista de músicas" }} />
+      <Stack.Screen options={{ title: "lista de musicas" }} />
 
       <Text style={styles.titulo}>Minhas músicas</Text>
 
@@ -28,9 +28,11 @@ export default function Lista() {
         onChangeText={setTexto}
         placeholder="Digite o nome da sua música"/>
 
-      <Button title="A" onPress={adicionar} 
-      style={styles.button}
-      backgroundcolor= "red"/>
+      <Button title="ADIOCIONAR"
+      color= "red"
+      onPress={adicionar} />
+      
+      color= "red"
 
       <FlatList
         style={styles.lista}
